@@ -140,6 +140,16 @@
     "value": "-"
   },
   {
+    "field_name": "Validation Objective",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "Validates GUPS throughput and TLB/L3 miss rates. NumPy runs only if gcc is missing or the build fails"
+  },
+  {
+    "field_name": "Command Tools Executed",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "Compile the C OpenMP GUPS kernel with gcc and run it under perf stat when available"
+  },
+  {
     "field_name": "run_benchmark Command Plus Options for Smoke Run (One minute or less)",
     "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
     "value": "bash run_benchmark.sh --smoke --validate --numa-node 0 --num-threads 1 --thread-affinity node:0 --table-size 4194304 --num-updates 1000000 --num-iterations 1 --seed 42"
@@ -153,16 +163,6 @@
     "field_name": "run_benchmark Command Plus Options for Extended Run (8 to 15 minutes)",
     "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
     "value": "bash run_benchmark.sh --extended --validate --numa-node 0 --num-threads 8 --thread-affinity node:0 --table-size 1073741824 --num-updates 200000000 --num-iterations 1900 --seed 42"
-  },
-  {
-    "field_name": "Validation Objective",
-    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
-    "value": "Validates GUPS throughput and TLB/L3 miss rates from the compiled C OpenMP kernel. NumPy runs only if gcc is missing or the build fails"
-  },
-  {
-    "field_name": "Command Tools Executed",
-    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
-    "value": "Compile an embedded C OpenMP GUPS kernel with gcc and run it under perf stat when available. NumPy is only the gcc fallback"
   },
   {
     "field_name": "Command Execution Details and Purpose",
@@ -377,7 +377,7 @@
   {
     "field_name": "Workload Command Line Executable",
     "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
-    "value": "Compile an embedded C OpenMP GUPS kernel with gcc and run it under perf stat when available. NumPy is only the gcc fallback"
+    "value": "Compile the C OpenMP GUPS kernel with gcc and run it under perf stat when available"
   },
   {
     "field_name": "ROCm Version",
@@ -412,7 +412,7 @@
   {
     "field_name": "Profile Parameter Values",
     "source_file": "BenchmarkSpecDefinitions.xlsx::Parameters_SmokeBaselineExtend",
-    "value": "{\"numa_node\": {\"smoke\": \"0\", \"baseline\": \"0\", \"extended\": \"0\", \"notes\": \"\"}, \"num_threads\": {\"smoke\": \"1\", \"baseline\": \"4\", \"extended\": \"8\", \"notes\": \"\"}, \"thread_affinity\": {\"smoke\": \"node:0\", \"baseline\": \"node:0\", \"extended\": \"node:0\", \"notes\": \"\"}, \"table_size\": {\"smoke\": \"4194304\", \"baseline\": \"268435456\", \"extended\": \"1073741824\", \"notes\": \"\"}, \"num_updates\": {\"smoke\": \"1000000\", \"baseline\": \"50000000\", \"extended\": \"200000000\", \"notes\": \"\"}, \"num_iterations\": {\"smoke\": \"1\", \"baseline\": \"1600\", \"extended\": \"1900\", \"notes\": \"2026-09-06: standardized num_iterations to baseline=200/extended=125 to match NVIDIA twin (213/413) -- num_updates, table_size, and num_iterations are now identical across AMD/NVIDIA GUPS. Baseline confirmed empirically on MI300X (4:35 @ 200 iters). Extended=125 calibrated from a real 20-iteration extended-scale sample (144.05s = 7.20s/iter) targeting ~15 min; refine with overnight run data. | 2026-09-10: retimed from ledger (baseline observed 4:42/4:49 avg ~4:45 @ num_iterations=200) toward Gary's ~4 min target. Linear extrapolation, not yet re-measured. | 2026-09-10: retimed from ledger (extended observed 14:33 @ num_iterations=111 -- note the prior note text said 125 but the live cell was 111; this correction supersedes that mismatch) toward Gary's ~12 min target. NOTE: this breaks the 2026-09-06 AMD/NVIDIA GUPS standardization with 213/413 -- Gary's per-platform targets (AMD 12 min vs NVIDIA 7 min) now differ, so 113 and 213 are intentionally no longer identical. | 2026-09-27 GARY_LEDGER (AggregatedRuntimeLedgers_20260927): baseline 168 iters measured 0:25/0:25 and extended 92 iters measured 0:34. Scaled to 1600 (~3:58) and 1900 (~11:42). table_size and num_updates unchanged.\"}, \"seed\": {\"smoke\": \"42\", \"baseline\": \"42\", \"extended\": \"42\", \"notes\": \"\"}}"
+    "value": "{\"numa_node\": {\"smoke\": \"0\", \"baseline\": \"0\", \"extended\": \"0\"}, \"num_threads\": {\"smoke\": \"1\", \"baseline\": \"4\", \"extended\": \"8\"}, \"thread_affinity\": {\"smoke\": \"node:0\", \"baseline\": \"node:0\", \"extended\": \"node:0\"}, \"table_size\": {\"smoke\": \"4194304\", \"baseline\": \"268435456\", \"extended\": \"1073741824\"}, \"num_updates\": {\"smoke\": \"1000000\", \"baseline\": \"50000000\", \"extended\": \"200000000\"}, \"num_iterations\": {\"smoke\": \"1\", \"baseline\": \"1600\", \"extended\": \"1900\"}, \"seed\": {\"smoke\": \"42\", \"baseline\": \"42\", \"extended\": \"42\"}}"
   },
   {
     "field_name": "Profile Command Authorship",
